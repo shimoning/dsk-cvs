@@ -1,0 +1,44 @@
+#!/usr/bin/env php
+<?php
+
+namespace Shimoning\DskCvs;
+
+use Shimoning\DskCvs\Entities\Input;
+use Shimoning\DskCvs\Entities\Options;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+// display welcome message
+echo __NAMESPACE__ . " shell\n";
+echo "-----\nexample:\n";
+echo "\$options = new Entities\Options(['test' => true]);\n";
+echo "\$input = new Entities\Input('YourUserId', 'YourPW);\n";
+echo "\$recordsOrError = Client::requestCvsRecords(\$input, \$options);\n";
+echo "\$recordsOrError->hasError();\n";
+echo "\$recordsOrError->count();\n";
+
+// load .env
+if (\file_exists(__DIR__ . \DIRECTORY_SEPARATOR . '.env')) {
+    $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+    echo "-----\n'.env' loaded.\n-----\n";
+}
+
+// run shell
+$sh = new \Psy\Shell();
+$sh->addCode(sprintf("namespace %s;", __NAMESPACE__));
+
+// set default
+$options = new Options(['test' => $_ENV['TEST'] ?? true]);
+$input = !empty($_ENV['USER_ID']) && !empty($_ENV['PW'])
+    ? new Input($_ENV['USER_ID'], $_ENV['PW'])
+    : null;
+
+$sh->setScopeVariables([
+    'options' => $options,
+    'input' => $input,
+]);
+
+$sh->run();
+
+echo "\n-----\nBye.\n\n";
