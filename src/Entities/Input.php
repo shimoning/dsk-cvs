@@ -4,7 +4,7 @@ namespace Shimoning\DskCvs\Entities;
 
 use Exception;
 use Shimoning\DskCvs\Entities\Contracts\PostInput;
-use Shimoning\DskCvs\Variables\Date;
+use Shimoning\DskCvs\Values\Date;
 
 class Input implements PostInput
 {
@@ -14,7 +14,7 @@ class Input implements PostInput
     private ?Date $_toDate;
 
     /**
-     * 収納データ取得用引数
+     * 収納データ取得用入力
      *
      * @param string $userId
      * @param string $pw

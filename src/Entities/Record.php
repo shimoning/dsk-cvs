@@ -3,8 +3,9 @@
 namespace Shimoning\DskCvs\Entities;
 
 use DateTimeImmutable;
-use Shimoning\DskCvs\Variables\Date;
-use Shimoning\DskCvs\Variables\Time;
+use Shimoning\DskCvs\Values\Date;
+use Shimoning\DskCvs\Values\Time;
+use Shimoning\DskCvs\Values\Barcode;
 use Shimoning\DskCvs\Constants\RecordType;
 
 class Record
@@ -16,7 +17,7 @@ class Record
     private ?Time $_receivedTime;
     private DateTimeImmutable $_receivedDateTime;
 
-    private string $_barcode;
+    private Barcode $_barcode;
     private string $_userData1;
     private string $_userData2;
 
@@ -43,7 +44,7 @@ class Record
         $this->_receivedTime = $record[2] > 0 ? new Time($record[2]) : null;
         $this->_receivedDateTime = new DateTimeImmutable($record[1] . ($record[2] > 0 ? $record[2] : ''));
 
-        $this->_barcode = $record[3];
+        $this->_barcode = new Barcode($record[3]);
         $this->_userData1 = $record[4];
         $this->_userData2 = $record[5];
 
@@ -109,11 +110,9 @@ class Record
     /**
      * EAN + バーコード情報(44桁)をそのまま設定
      * 種別が 12 の場合は、支払期限の設定の有無にかかわらずバーコード情報の31-36桁(支払期限)が999999としてセットされます。
-     *
-     * TODO: implement barcode entity
-     * @return string
+     * @return Barcode
      */
-    public function getBarcode(): string
+    public function getBarcode(): Barcode
     {
         return $this->_barcode;
     }

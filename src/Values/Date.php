@@ -1,6 +1,6 @@
 <?php
 
-namespace Shimoning\DskCvs\Variables;
+namespace Shimoning\DskCvs\Values;
 
 use DateTimeInterface;
 use Exception;
@@ -18,8 +18,14 @@ class Date
     public function __construct(mixed $date)
     {
         if (\is_string($date)) {
-            // TODO: validate
-            $this->_date = date('Ymd', \strtotime($date));
+            $length = \strlen($date);
+            if ($length === 6) {
+                $date = '20' . $date;
+            } else if ($length !== 8) {
+                // TODO: replace original exception for handling by user
+                throw new Exception('日付は "文字列" で 6桁(YYMMDD) もしくは 8桁(YYYYMMDD) を入れてください。');
+            }
+            $this->_date = $date;
         } else if ($date instanceof DateTimeInterface) {
             $this->_date = $date->format('Ymd');
         } else {

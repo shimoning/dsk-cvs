@@ -60,7 +60,7 @@ if ($recordsOrError->hasError()) {
 片方だけ指定したり、from/to で日付を逆にすることはできません。
 
 ```php
-use Shimoning\DskCvs\Variables\Date;
+use Shimoning\DskCvs\Values\Date;
 $fromDate = new Date('20220901');
 $toDate = new Date('20220910');
 $input = new Input($userId, $pw, $fromDate, $toDate);
