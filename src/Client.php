@@ -79,20 +79,25 @@ class Client
     }
 
     /**
-     * 収納情報ダウンロード
+     * 収納情報取得
      *
      * @param PostInput $input
      * @param Options|array|null $options
+     * @param string|null $csv
+     * @param array|null $header
      * @return \Shimoning\DskCvs\Entities\Collection|\Shimoning\DskCvs\Entities\Error|null
      */
     public static function requestCvsRecords(
         Input $input,
         mixed $options = null,
+        string &$csv = null,
+        array &$header = null,
     ): ErrorEntity|Collection|null {
         $response = static::post($input, $options);
         if (! $response->isSuccess()) {
             return null;
         }
+        $csv = $response->getRawBody();
 
         $body = $response->getParsedBody();
         $header = $body[0];
