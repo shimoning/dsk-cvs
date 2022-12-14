@@ -16,15 +16,12 @@ enum RecordType: string
     public function description(): string
     {
         return match ($this) {
-            self::PRELIMINARY    => '速報',
-
-            self::INVALID_1         => '値に使用できない文字が含まれている',
-            self::INVALID_2         => '値に使用できない文字が含まれている',
-            self::INVALID_3         => '値に使用できない文字が含まれている',
-            self::INVALID_4         => '値に使用できない文字が含まれている',
-
-            self::UNDER_THRESHOLD   => '値の桁数が足りない',
-            self::MISSING           => '値が設定されていない',
+            self::PRELIMINARY           => '速報',
+            self::CONFIRMED             => '確定',
+            self::PRELIMINARY_CANCELED  => '速報取消',
+            self::POSTAL_TRANSFER       => '郵便振替',
+            self::POSTAL_TRANSFER_FIXED => '郵便振替訂正',
+            self::REAL                  => 'リアルデータ',
         };
     }
 }
