@@ -39,7 +39,7 @@ class Barcode
         $this->_companyCode = \substr($barcode, 8, 5);
         $this->_freeArea = \substr($barcode, 13, 16);
         $this->_userData1 = \substr($barcode, 13, 6);
-        $this->_userData2 = \substr($barcode, 19, 11);
+        $this->_userData2 = \substr($barcode, 19, 10);
         $this->_retryCount = (int)\substr($barcode, 29, 1);
         $this->_paymentDueDate = \substr($barcode, 30, 6);
         $this->_revenueStamp = (bool)\substr($barcode, 36, 1);
@@ -132,7 +132,7 @@ class Barcode
     }
 
     /**
-     * ユーザー使用欄2 + 再発行区分 (最後の1桁)
+     * ユーザー使用欄2
      * @return string
      */
     public function getUserData2(): string
