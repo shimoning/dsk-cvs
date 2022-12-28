@@ -3,7 +3,7 @@
 namespace Shimoning\DskCvs\Values;
 
 use DateTimeInterface;
-use Exception;
+use Shimoning\DskCvs\Exceptions\ParameterException;
 
 /**
  * DSK 収納データで扱われる日付型 (YYYYMMDD)
@@ -22,15 +22,13 @@ class Date
             if ($length === 6) {
                 $date = '20' . $date;
             } else if ($length !== 8) {
-                // TODO: replace original exception for handling by user
-                throw new Exception('日付は "文字列" で 6桁(YYMMDD) もしくは 8桁(YYYYMMDD) を入れてください。');
+                throw new ParameterException('日付は "文字列" で 6桁(YYMMDD) もしくは 8桁(YYYYMMDD) を入れてください。');
             }
             $this->_date = $date;
         } else if ($date instanceof DateTimeInterface) {
             $this->_date = $date->format('Ymd');
         } else {
-            // TODO: replace original exception for handling by user
-            throw new Exception('日付は "文字列" もしくは "DateTimeInterface を継承したオブジェクト" を入れてください。');
+            throw new ParameterException('日付は "文字列" もしくは "DateTimeInterface を継承したオブジェクト" を入れてください。');
         }
     }
 

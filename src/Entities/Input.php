@@ -2,9 +2,9 @@
 
 namespace Shimoning\DskCvs\Entities;
 
-use Exception;
 use Shimoning\DskCvs\Entities\Contracts\PostInput;
 use Shimoning\DskCvs\Values\Date;
+use Shimoning\DskCvs\Exceptions\ParameterException;
 
 class Input implements PostInput
 {
@@ -38,12 +38,10 @@ class Input implements PostInput
     private function validateDate(?Date $fromDate, ?Date $toDate)
     {
         if ((!$fromDate && $toDate) || ($fromDate && !$toDate)) {
-            // TODO: replace original exception for handling by user
-            throw new Exception('from_date と to_date は片方だけ指定できません。');
+            throw new ParameterException('from_date と to_date は片方だけ指定できません。');
         }
         if ($fromDate && $toDate && $fromDate >= $toDate) {
-            // TODO: replace original exception for handling by user
-            throw new Exception('from_date は to_date より過去である必要があります。');
+            throw new ParameterException('from_date は to_date より過去である必要があります。');
         }
     }
 
