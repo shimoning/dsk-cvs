@@ -3,7 +3,7 @@
 namespace Shimoning\DskCvs\Entities;
 
 use DateTimeImmutable;
-use Shimoning\DskCvs\Entities\Contracts\Output;
+use Shimoning\DskCvs\Contracts\Entities\Output;
 
 class Error implements Output
 {

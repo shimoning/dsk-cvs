@@ -2,7 +2,7 @@
 
 namespace Shimoning\DskCvs\Entities;
 
-use Shimoning\DskCvs\Entities\Contracts\PostInput;
+use Shimoning\DskCvs\Contracts\Entities\PostInput;
 use Shimoning\DskCvs\Values\Date;
 use Shimoning\DskCvs\Exceptions\ParameterException;
 

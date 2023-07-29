@@ -1,6 +1,6 @@
 <?php
 
-namespace Shimoning\DskCvs\Entities\Contracts;
+namespace Shimoning\DskCvs\Contracts\Entities;
 
 /**
  * GET 用入力型

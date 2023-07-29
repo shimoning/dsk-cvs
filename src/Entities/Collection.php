@@ -6,7 +6,7 @@ use ArrayAccess;
 use IteratorAggregate;
 use Traversable;
 use ArrayIterator;
-use Shimoning\DskCvs\Entities\Contracts\Output;
+use Shimoning\DskCvs\Contracts\Entities\Output;
 
 class Collection implements ArrayAccess, IteratorAggregate, Output
 {

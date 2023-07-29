@@ -3,7 +3,7 @@
 namespace Shimoning\DskCvs;
 
 use GuzzleHttp\Client as GuzzleClient;
-use Shimoning\DskCvs\Entities\Contracts\PostInput;
+use Shimoning\DskCvs\Contracts\Entities\PostInput;
 use Shimoning\DskCvs\Entities\Options;
 use Shimoning\DskCvs\Entities\Response;
 use Shimoning\DskCvs\Entities\Input;
