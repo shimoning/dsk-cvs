@@ -21,7 +21,19 @@ echo "\$recordsOrError->count();\n";
 if (\file_exists(__DIR__ . \DIRECTORY_SEPARATOR . '.env')) {
     $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->load();
-    echo "-----\n'.env' loaded.\n-----\n";
+    echo "-----\n'.env' loaded.\n";
+    echo "\nUSER_ID: " . (!empty($_ENV['USER_ID']) ? 'SET!' : 'missing...') . "\n";
+    echo "     PW: " . (!empty($_ENV['PW']) ? 'SET!' : 'missing...') . "\n\n";
+
+    if (!empty($_ENV['USER_ID']) && !empty($_ENV['PW'])) {
+        echo "[ENV status] " . (!empty($_ENV['PW']) ? 'OK' : 'NG') . "\n\n";
+    }
+    if (!empty($_ENV['TEST'])) {
+        echo "** TEST mode\n";
+    } else {
+        echo "!! PRODUCTION mode !!\n";
+    }
+    echo "-----\n";
 }
 
 // run shell
