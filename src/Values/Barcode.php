@@ -52,22 +52,13 @@ class Barcode
     }
 
     /**
-     * モジュラス10 - ウェイト1,3
+     * 入力されたチェックディジットと計算した結果を照合する
      * @return bool
      */
     public function validate(): bool
     {
-        $arrayedBarcode = \array_reverse(\str_split($this->_barcode));
-        $setCheckDigit = \intval(\substr($this->_barcode, -1));
-
-        $sum = 0;
-        foreach ($arrayedBarcode as $i => $digit) {
-            $sum += \intval($digit) * ($i % 2 === 0 ? 1 : 3);
-        }
-        $sum -= $setCheckDigit;
-        $last1 = $sum % 10;
-
-        $calculatedCheckDigit = $last1 === 0 ? 0 : 10 - $last1;
+        $setCheckDigit = -1;
+        $calculatedCheckDigit = CheckDigit::barcode($this->_barcode, $setCheckDigit);
 
         return $setCheckDigit === $calculatedCheckDigit;
     }
