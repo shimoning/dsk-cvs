@@ -96,7 +96,7 @@ class CheckDigit
         $calculatedCheckDigit1 = ($sumForCD1 + $calculatedCheckDigit2 * 2) % 11;
 
         return [
-            $calculatedCheckDigit1,
+            $calculatedCheckDigit1 === 10 ? 0 : $calculatedCheckDigit1,
             $calculatedCheckDigit2,
         ];
     }
