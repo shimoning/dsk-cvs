@@ -182,6 +182,19 @@ class Barcode
     }
 
     /**
+     * OCR印刷用フォーマット
+     *
+     * @return array<int, string>
+     */
+    public function formatForOcr(): array
+    {
+        return [
+            '(' . $this->_identifier . ')' . $this->_makerCode . '-' . $this->_companyCode . $this->_freeArea . $this->_retryCount,
+            $this->_paymentDueDate . '-' . $this->_revenueStamp . '-' . \sprintf('%06d', $this->_amount) . '-' . $this->_checkDigit,
+        ];
+    }
+
+    /**
      * 基本情報からバーコードの数字列を生成する
      *
      * @param string $companyCode
