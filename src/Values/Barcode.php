@@ -190,7 +190,7 @@ class Barcode
     {
         return [
             '(' . $this->_identifier . ')' . $this->_makerCode . '-' . $this->_companyCode . $this->_freeArea . $this->_retryCount,
-            $this->_paymentDueDate . '-' . $this->_revenueStamp . '-' . \sprintf('%06d', $this->_amount) . '-' . $this->_checkDigit,
+            $this->_paymentDueDate . '-' . ($this->_revenueStamp ? 1 : 0) . '-' . \sprintf('%06d', $this->_amount) . '-' . $this->_checkDigit,
         ];
     }
 
