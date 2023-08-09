@@ -89,8 +89,8 @@ class CheckDigit
             }
 
             $isOdd = $i % 2 === 1;
-            $sumForCD1 += $digit * ($isOdd ? $weightForCD1++ : 1);
-            $sumForCD2 += $digit * ($isOdd ? 1 : $weightForCD2-- );
+            $sumForCD1 += \intval($digit) * ($isOdd ? $weightForCD1++ : 1);
+            $sumForCD2 += \intval($digit) * ($isOdd ? 1 : $weightForCD2-- );
         }
         $calculatedCheckDigit2 = $sumForCD2 % 10;
         $calculatedCheckDigit1 = ($sumForCD1 + $calculatedCheckDigit2 * 2) % 11;
