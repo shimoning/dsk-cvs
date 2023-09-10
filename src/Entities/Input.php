@@ -40,7 +40,7 @@ class Input implements PostInput
         if ((!$fromDate && $toDate) || ($fromDate && !$toDate)) {
             throw new ParameterException('from_date と to_date は片方だけ指定できません。');
         }
-        if ($fromDate && $toDate && $fromDate >= $toDate) {
+        if ($fromDate && $toDate && $fromDate > $toDate) {
             throw new ParameterException('from_date は to_date より過去である必要があります。');
         }
     }
