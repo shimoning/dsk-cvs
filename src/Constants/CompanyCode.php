@@ -57,4 +57,13 @@ enum CompanyCode: string
             self::POSTAL_TRANSFER_COUNTER   => '郵便振替（窓口）',
         };
     }
+
+    public function isPostalTransfer(): bool
+    {
+        return match ($this) {
+            self::POSTAL_TRANSFER           => true,
+            self::POSTAL_TRANSFER_COUNTER   => true,
+            default => false,
+        };
+    }
 }

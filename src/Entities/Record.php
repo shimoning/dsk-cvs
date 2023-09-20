@@ -7,6 +7,7 @@ use Shimoning\DskCvs\Values\Date;
 use Shimoning\DskCvs\Values\Time;
 use Shimoning\DskCvs\Values\Barcode;
 use Shimoning\DskCvs\Constants\RecordType;
+use Shimoning\DskCvs\Constants\CompanyCode;
 
 class Record
 {
@@ -24,7 +25,7 @@ class Record
     private bool $_revenueStamp;
     private int $_amount;
 
-    private string $_companyCode;
+    private CompanyCode|string $_companyCode;
     private string $_companyName;
     private string $_shopCode;
 
@@ -51,7 +52,7 @@ class Record
         $this->_revenueStamp = (bool)$record[6];
         $this->_amount = (int)$record[7];
 
-        $this->_companyCode = $record[8];
+        $this->_companyCode = CompanyCode::tryFrom($record[8]) ?? $record[8];
         $this->_companyName = $record[9];
         $this->_shopCode = $record[10];
 
@@ -129,7 +130,7 @@ class Record
 
     /**
      * ユーザー使用欄2
-     * バーコード情報の20-30桁目
+     * バーコード情報の20-30桁目 (30桁目は再発行区分)
      * @return string
      */
     public function getUserData2(): string
@@ -161,10 +162,9 @@ class Record
     /**
      * コンビニ本部コード
      * DSKコンビニコード又は郵便局識別
-     * TODO: implement CompanyCode constants
-     * @return string
+     * @return CompanyCode|string
      */
-    public function getCompanyCode(): string
+    public function getCompanyCode(): CompanyCode|string
     {
         return $this->_companyCode;
     }
