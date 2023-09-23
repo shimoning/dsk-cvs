@@ -4,6 +4,8 @@ namespace Shimoning\DskCvs\Constants;
 
 /**
  * @link https://www.dsk-ec.jp/products/shuunou/oshirase/cvscd_20220601.pdf
+ *
+ * TODO: support モバライ
  */
 enum CompanyCode: string
 {
@@ -24,7 +26,7 @@ enum CompanyCode: string
     case LINE_PAY                   = '810';
     case PAY_PAY                    = '820';
     case RAKUTEN_BANK               = '830';
-    case YUCHO_PAY                  = '840';
+    case BANK_PAY                   = '840';
     case MMK                        = '890';
 
     case POSTAL_TRANSFER            = '910';
@@ -41,7 +43,7 @@ enum CompanyCode: string
 
             self::PAY_B                     => 'PayB',
             self::CREDIT_CARD_FOR_LOCAL     => 'クレジットカード集信代行（自治体専用）',
-            self::POPLAR                    => 'ポプラ',
+            self::POPLAR                    => 'ポプラ、生活彩家、くらしハウス、スリーエイト',
             self::J_COIN                    => 'J-Coin請求書払い',
             self::SEICO_MART                => 'セイコーマート、ハマナスクラブ（ハセガワストア、タイエー）',
 
@@ -50,19 +52,64 @@ enum CompanyCode: string
             self::LINE_PAY                  => 'LINE Pay請求書支払い',
             self::PAY_PAY                   => 'PayPay請求書払い',
             self::RAKUTEN_BANK              => '楽天銀行コンビニ支払サービス',
-            self::YUCHO_PAY                 => '銀行Pay（ゆうちょPay等）',
+            self::BANK_PAY                  => '銀行Pay（ゆうちょPay等）',
             self::MMK                       => 'ＭＭＫ設置店',
 
-            self::POSTAL_TRANSFER           => '郵便振替',
+            self::POSTAL_TRANSFER_ATM       => '郵便振替',
             self::POSTAL_TRANSFER_COUNTER   => '郵便振替（窓口）',
         };
     }
 
+    /**
+     * ゆうちょ振替MT代行
+     * @link https://www.dsk-ec.jp/products/yucho/
+     * @return bool
+     */
     public function isPostalTransfer(): bool
     {
         return match ($this) {
-            self::POSTAL_TRANSFER           => true,
+            self::POSTAL_TRANSFER_ATM       => true,
             self::POSTAL_TRANSFER_COUNTER   => true,
+            default => false,
+        };
+    }
+
+    /**
+     * コンビニ収納代行
+     * @link https://www.dsk-ec.jp/products/convenience/
+     * @return bool
+     */
+    public function isConvenienceStore(): bool
+    {
+        return match ($this) {
+            self::SEVEN_ELEVEN  => true,
+            self::LAWSON        => true,
+            self::FAMILY_MART   => true,
+            self::YAMAZAKI      => true,
+            self::MINI_STOP     => true,
+            self::POPLAR        => true,
+            self::SEICO_MART    => true,
+            self::MMK           => true,
+            default => false,
+        };
+    }
+
+    /**
+     * アプリ払込票決済
+     * @link https://www.dsk-ec.jp/products/app_payment/
+     * @return bool
+     */
+    public function isPaymentApplication(): bool
+    {
+        return match ($this) {
+            self::PAY_B                     => 'PayB',
+            self::J_COIN                    => 'J-Coin請求書払い',
+            self::AU_PAY                    => 'au PAY(請求書支払い)',
+            self::D_BARAI                   => 'd払い請求書払い',
+            self::LINE_PAY                  => 'LINE Pay請求書支払い',
+            self::PAY_PAY                   => 'PayPay請求書払い',
+            self::RAKUTEN_BANK              => '楽天銀行コンビニ支払サービス',
+            self::BANK_PAY                  => '銀行Pay（ゆうちょPay等）',
             default => false,
         };
     }

@@ -58,4 +58,11 @@ class Input implements PostInput
                 'PW' => $this->_pw,
             ];
     }
+
+    public function setDate(?Date $fromDate, ?Date $toDate)
+    {
+        $this->validateDate($fromDate, $toDate);
+        $this->_fromDate = $fromDate;
+        $this->_toDate = $toDate;
+    }
 }

@@ -29,7 +29,7 @@ if (\file_exists(__DIR__ . \DIRECTORY_SEPARATOR . '.env')) {
         echo "[ENV status] " . (!empty($_ENV['PW']) ? 'OK' : 'NG') . "\n\n";
     }
     if (!empty($_ENV['TEST'])) {
-        echo "** TEST mode\n";
+        echo "** TEST mode **\n";
     } else {
         echo "!! PRODUCTION mode !!\n";
     }
