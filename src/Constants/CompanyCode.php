@@ -29,7 +29,7 @@ enum CompanyCode: string
     case BANK_PAY                   = '840';
     case MMK                        = '890';
 
-    case POSTAL_TRANSFER            = '910';
+    case POSTAL_TRANSFER_ATM        = '910';
     case POSTAL_TRANSFER_COUNTER    = '911';
 
     public function description(): string
