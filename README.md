@@ -6,14 +6,10 @@
 また、このライブラリに関するお問い合わせもサービスを提供されてる方へ行わないでください。
 
 ## Install
-利用するプロジェクトの `composer.json` に以下を追加します。
-```composer.json
-"repositories": {
-    "dsk-cvs": {
-        "type": "vcs",
-        "url": "https://github.com/shimoning/dsk-cvs.git"
-    }
-},
+利用したいプロジェクトのディレクトリに移動して、以下のコマンドを実行する。
+
+```bash
+composer config repositories.shimoning/dsk-cvs vcs git@github.com/shimoning/dsk-cvs.git
 ```
 
 その後以下でインストールが可能です。
