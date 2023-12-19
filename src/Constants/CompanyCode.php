@@ -102,14 +102,14 @@ enum CompanyCode: string
     public function isPaymentApplication(): bool
     {
         return match ($this) {
-            self::PAY_B                     => 'PayB',
-            self::J_COIN                    => 'J-Coin請求書払い',
-            self::AU_PAY                    => 'au PAY(請求書支払い)',
-            self::D_BARAI                   => 'd払い請求書払い',
-            self::LINE_PAY                  => 'LINE Pay請求書支払い',
-            self::PAY_PAY                   => 'PayPay請求書払い',
-            self::RAKUTEN_BANK              => '楽天銀行コンビニ支払サービス',
-            self::BANK_PAY                  => '銀行Pay（ゆうちょPay等）',
+            self::PAY_B         => true,
+            self::J_COIN        => true,
+            self::AU_PAY        => true,
+            self::D_BARAI       => true,
+            self::LINE_PAY      => true,
+            self::PAY_PAY       => true,
+            self::RAKUTEN_BANK  => true,
+            self::BANK_PAY      => true,
             default => false,
         };
     }
