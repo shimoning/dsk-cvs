@@ -10,6 +10,7 @@ use Shimoning\DskCvs\Entities\Input;
 use Shimoning\DskCvs\Entities\Collection;
 use Shimoning\DskCvs\Entities\Record as RecordEntity;
 use Shimoning\DskCvs\Entities\Error as ErrorEntity;
+use Shimoning\DskCvs\Utilities\Csv;
 
 class Client
 {
@@ -101,7 +102,7 @@ class Client
 
         $body = $response->getParsedBody();
         $header = $body[0];
-        if (\strpos($header[0], 'error') === false) {
+        if (! Csv::hasError($body)) {
             $length = count($body);
 
             $records = [];

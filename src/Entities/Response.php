@@ -3,6 +3,7 @@
 namespace Shimoning\DskCvs\Entities;
 
 use Psr\Http\Message\ResponseInterface;
+use Shimoning\DskCvs\Utilities\Csv;
 
 class Response
 {
@@ -22,22 +23,8 @@ class Response
         if ($this->_status === 200) {
             $body = $response->getBody()->getContents();
             $this->_rawBody = $body;
-            $this->_parsedBody = $this->parse($body);
+            $this->_parsedBody = Csv::toArray($body);
         }
-    }
-
-    /**
-     * ボディをパースする
-     * @param string $body
-     * @return array
-     */
-    private function parse(string $body): array
-    {
-        // TODO: implement
-        $utf8Body = \mb_convert_encoding($body, 'UTF-8', 'SJIS');
-        $arrayedBody = explode("\r\n", $utf8Body);
-        $parsedBody = array_map('str_getcsv', $arrayedBody);
-        return $parsedBody;
     }
 
     /**
