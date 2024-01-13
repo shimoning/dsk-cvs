@@ -3,6 +3,7 @@
 namespace Shimoning\DskCvs\Values;
 
 use DateTimeInterface;
+use DateTimeImmutable;
 use Shimoning\DskCvs\Exceptions\ParameterException;
 
 /**
@@ -33,11 +34,16 @@ class Date
     }
 
     /**
-     * 日時を取得
+     * 年月日を文字列で取得 (YYYYMMDD)
      * @return string
      */
     public function get(): string
     {
         return $this->_date;
+    }
+
+    public function getDatetime(): DateTimeImmutable
+    {
+        return new DateTimeImmutable($this->_date . ' 00:00:00');
     }
 }

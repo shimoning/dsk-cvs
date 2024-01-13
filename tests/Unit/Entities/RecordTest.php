@@ -102,12 +102,22 @@ class RecordTest extends TestCase
             $records[0]->getCreatedDate()?->get(),
             'created_date',
         );
+        $this->assertEquals(
+            '20240117000000',
+            $records[0]->getCreatedDate()?->getDatetime()?->format('YmdHis'),
+            'created_datetime',
+        );
 
         // 支払い予定日が null じゃないケース
         $this->assertEquals(
             '20240124',
             $records[11]->getPaysDate()?->get(),
             'pays_date',
+        );
+        $this->assertEquals(
+            '20240124000000',
+            $records[11]->getPaysDate()?->getDatetime()?->format('YmdHis'),
+            'created_datetime',
         );
     }
 
